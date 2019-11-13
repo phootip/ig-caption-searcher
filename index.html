@@ -48,11 +48,15 @@
      </el-row> <!-- search wrapper -->
        
      <el-row :gutter="10">
-       <el-col v-for="item in getItems" :xs="24" :sm="12" :md="8">
-         <div class="box"> 
-           <div> {{ item.caption }} </div>
-           <div class="box__subtitle"> {{ item.url }} </div>
-         </div>
+       <el-col v-for="item in getItems">
+          <el-row class="box" style="cursor: pointer;" @click.native="redirect(item.url)"> 
+            <el-col class="box-item" :lg="6" :md="6" :sm="6" :xs="6">
+              <img :src="item.thumbnailUrl" class="thumpnail"/>
+            </el-col>
+            <el-col :lg="18" :md="18" :sm="18" :xs="18">
+              <div> {{ item.caption }} </div>
+            </el-col>
+          </el-row>
        </el-col>
    
        <el-col v-if="getItems.length === 0" :xs="24" :sm="24" :md="24">
