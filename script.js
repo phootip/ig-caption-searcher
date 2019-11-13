@@ -24,19 +24,18 @@ new Vue({
     }
   },
   methods: {
-    async publicFetch () {
+    async fetchData () {
       console.log("start publicFetch...")
       try {
         this.items = await resolveItems(this.username, this.item)
-        console.log(this.items)
+        console.log(this.items.length)
       } catch (e) {
         console.error('Fetching Instagram photos failed', e)
       }
       console.log("end publicFetch")
     },
     redirect (url) {
-      console.log("redirect!!",url)
-      // window.location.href = url
+      window.location.href = url
     }
   },
   mounted() {

@@ -3,7 +3,7 @@ const fetchInstagramPhotos = async (accountUrl) => {
   const response = await axios.get(accountUrl)
   const data = response.data.match(instagramRegExp)[1]
   const json = JSON.parse(data.slice(0, -1))
-  const edges = json.entry_data.ProfilePage[0].graphql.user.edge_owner_to_timeline_media.edges.splice(0, 8)
+  const edges = json.entry_data.ProfilePage[0].graphql.user.edge_owner_to_timeline_media.edges
   const photos = edges.map(({ node }) => {
     return {
       url: `https://www.instagram.com/p/${node.shortcode}/`,
