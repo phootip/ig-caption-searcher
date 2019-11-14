@@ -26,14 +26,7 @@
         <el-col class="col-space" :lg="6" :md="6" :sm="6" :xs="24">&nbsp;</el-col>
 
         <el-col :lg="6" :md="6" :sm="6" :xs="24">
-          <el-select v-model="sort" placeholder="Sort by">
-            <el-option
-              v-for="item in options"
-              :label="item.label"
-              :value="item.value"
-              :key="item.label"
-            ></el-option>
-          </el-select>
+          <el-checkbox v-model="preview" border>Show Image</el-checkbox>
         </el-col>
       </el-row>
     </el-row>
@@ -41,11 +34,22 @@
 
     <el-row :gutter="10">
       <el-col v-for="item in getItems" :key="item.thumbnailUrl">
-        <el-row class="box" style="cursor: pointer;" @click.native="redirect(item.url)">
+        <el-row
+          v-if="preview"
+          class="box"
+          style="cursor: pointer;"
+          @click.native="redirect(item.url)"
+        >
           <el-col class="box-item" :lg="6" :md="6" :sm="6" :xs="6">
             <img :src="item.thumbnailUrl" class="thumpnail" />
           </el-col>
           <el-col :lg="18" :md="18" :sm="18" :xs="18">
+            <div>{{ item.caption }}</div>
+          </el-col>
+        </el-row>
+
+        <el-row v-else class="box" style="cursor: pointer;" @click.native="redirect(item.url)">
+          <el-col :lg="24" :md="24" :sm="24" :xs="24">
             <div>{{ item.caption }}</div>
           </el-col>
         </el-row>
@@ -72,6 +76,7 @@ export default {
     return {
       filter: "",
       sort: "",
+      preview: false,
       options: [
         { label: "Default", value: "none" },
         { label: "Most Viewed", value: "views" }
