@@ -1,4 +1,3 @@
-<script>
 import axios from "axios";
 const instagramRegExp = new RegExp(
   /<script type="text\/javascript">window\._sharedData = (.*)<\/script>/
@@ -20,11 +19,6 @@ const fetchInstagramPhotos = async accountUrl => {
   });
   return photos;
 };
-const resolveItems = async username => {
+export const resolveItems = async username => {
   return await fetchInstagramPhotos(`https://www.instagram.com/${username}/`);
 };
-
-export default {
-  resolveItems
-};
-</script>

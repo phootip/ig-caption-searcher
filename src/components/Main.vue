@@ -61,7 +61,8 @@
 </template>
 
 <script>
-import resolveItems from "./resolve";
+import { resolveItems } from "./resolve.js";
+
 export default {
   name: "Main",
   props: {

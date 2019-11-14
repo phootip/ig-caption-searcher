@@ -12,7 +12,8 @@ body {
   margin: 10px 0;
 }
 .col-space {
-  content: '&nbsp;';
+  content: '&nbsp';
+  height: 1px;
 }
 @media screen and (max-width: 767px) {
   .col-space {
