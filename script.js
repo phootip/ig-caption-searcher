@@ -2,8 +2,8 @@
 // https://www.youtube.com/watch?v=VPUdtEf3oXI
 new Vue({
   el: '#app',
-  data: function() {
-    return { 
+  data: function () {
+    return {
       filter: '',
       sort: '',
       options: [
@@ -19,22 +19,22 @@ new Vue({
       var items = this.items.filter((item) => {
         return item.caption.toLowerCase().includes(this.filter.toLowerCase());
       });
-    
+
       return items
     }
   },
   methods: {
-    async fetchData () {
-      console.log("start publicFetch...")
+    async fetchData() {
+      console.info("start publicFetch...")
       try {
         this.items = await resolveItems(this.username, this.item)
-        console.log(this.items.length)
+        console.info(this.items.length)
       } catch (e) {
         console.error('Fetching Instagram photos failed', e)
       }
-      console.log("end publicFetch")
+      console.info("end publicFetch")
     },
-    redirect (url) {
+    redirect(url) {
       window.location.href = url
     }
   },

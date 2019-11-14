@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,71 +11,70 @@
   <link rel="stylesheet" href="./style.css">
   <title>Document</title>
 </head>
+
 <body>
   <div id="app" v-cloak>
-  
+
     <div class="container">
-     
-     <el-row class="search-wrapper" :gutter="10">
-      <el-row>
-        <el-col :lg="12" :md="12" :sm="12" :xs="20"> 
-          <el-input placeholder="Enter Your Instagram ID" icon="search" value="sunsetwithbubbles" v-model="username">
-        </el-col>
 
-        <el-col class="col-space" :lg="6" :md="6" :sm="6" :xs="24"> &nbsp; </el-col>
+      <el-row class="search-wrapper" :gutter="10">
+        <el-row>
+          <el-col :lg="12" :md="12" :sm="12" :xs="20">
+            <el-input placeholder="Enter Your Instagram ID" icon="search" value="sunsetwithbubbles" v-model="username">
+          </el-col>
 
-        <el-col :lg="6" :md="6" :sm="6" :xs="4"> 
-          <el-button @click="fetchData"> Fetch Data </el-button>
-        </el-col>
-      </el-row>
-      
-      <el-row> 
-        <el-col :lg="12" :md="12" :sm="12" :xs="24">
-          <el-input placeholder="Filter by Name" icon="search" v-model="filter">
-        </el-col>
-          
-        <el-col class="col-space" :lg="6" :md="6" :sm="6" :xs="24"> &nbsp; </el-col>
-        
-        <el-col :lg="6" :md="6" :sm="6" :xs="24">
-          <el-select v-model="sort" placeholder="Sort by">
-            <el-option
-              v-for="item in options"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
-        </el-col>
-      </el-row>
-      
-         
-     </el-row> <!-- search wrapper -->
-       
-     <el-row :gutter="10">
-       <el-col v-for="item in getItems">
-          <el-row class="box" style="cursor: pointer;" @click.native="redirect(item.url)"> 
+          <el-col class="col-space" :lg="6" :md="6" :sm="6" :xs="24"> &nbsp; </el-col>
+
+          <el-col :lg="6" :md="6" :sm="6" :xs="4">
+            <el-button @click="fetchData"> Fetch Data </el-button>
+          </el-col>
+        </el-row>
+
+        <el-row>
+          <el-col :lg="12" :md="12" :sm="12" :xs="24">
+            <el-input placeholder="Filter by Name" icon="search" v-model="filter">
+          </el-col>
+
+          <el-col class="col-space" :lg="6" :md="6" :sm="6" :xs="24"> &nbsp; </el-col>
+
+          <el-col :lg="6" :md="6" :sm="6" :xs="24">
+            <el-select v-model="sort" placeholder="Sort by">
+              <el-option v-for="item in options" :label="item.label" :value="item.value">
+              </el-option>
+            </el-select>
+          </el-col>
+        </el-row>
+
+
+      </el-row> <!-- search wrapper -->
+
+      <el-row :gutter="10">
+        <el-col v-for="item in getItems">
+          <el-row class="box" style="cursor: pointer;" @click.native="redirect(item.url)">
             <el-col class="box-item" :lg="6" :md="6" :sm="6" :xs="6">
-              <img :src="item.thumbnailUrl" class="thumpnail"/>
+              <img :src="item.thumbnailUrl" class="thumpnail" />
             </el-col>
             <el-col :lg="18" :md="18" :sm="18" :xs="18">
               <div> {{ item.caption }} </div>
             </el-col>
           </el-row>
-       </el-col>
-   
-       <el-col v-if="getItems.length === 0" :xs="24" :sm="24" :md="24">
-         <div class="box box__empty"> No Match Found</div>
-       </el-col>
-   
-     </el-row> <!-- results -->
-       
+        </el-col>
+
+        <el-col v-if="getItems.length === 0" :xs="24" :sm="24" :md="24">
+          <div class="box box__empty"> No Match Found</div>
+        </el-col>
+
+      </el-row> <!-- results -->
+
     </div> <!-- container -->
-     
-   </div> <!-- #app -->
+
+  </div> <!-- #app -->
 
 </body>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
-  <script src="https://unpkg.com/element-ui@1.1.6/lib/index.js"></script>
-  <script src="api.js"></script>
-  <script src="script.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+<script src="https://unpkg.com/element-ui@1.1.6/lib/index.js"></script>
+<script src="api.js"></script>
+<script src="script.js"></script>
+
 </html>
