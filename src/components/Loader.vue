@@ -1,24 +1,27 @@
 <template>
   <div>
-    {{loaded}}/{{total}}
-    <!-- <el-button @click="updateValue">Click me</el-button> -->
-    <!-- <el-button @click="$emit('phootip',24)">Click me</el-button> -->
+    <ICountUp :delay="delay" :endVal="loaded" :options="{}" ref="counter" />
+    / {{total}}
     <el-button @click="fetchInstagramPhotos(username)">Fetch Captions</el-button>
   </div>
 </template>
 
 <script>
 import axios from "axios";
-
+import ICountUp from "vue-countup-v2";
 export default {
   name: "Loader",
+  components: {
+    ICountUp
+  },
   props: {
     username: String
   },
   data: () => {
     return {
       total: 0,
-      loaded: 0
+      loaded: 0,
+      delay: 0
     };
   },
   methods: {
@@ -28,6 +31,7 @@ export default {
     async fetchInstagramPhotos(username) {
       this.loaded = 0;
       this.total = 0;
+      this.$refs.counter.reset();
       this.$emit("updateItems", []);
       const accountUrl = `https://www.instagram.com/${username}/`;
       const response = await axios.get(accountUrl);
@@ -64,7 +68,6 @@ export default {
             return {
               url: `https://www.instagram.com/p/${node.shortcode}/`,
               thumbnailUrl: node.thumbnail_src,
-              // displayUrl: node.display_url,
               caption: node.edge_media_to_caption.edges[0].node.text
             };
           })

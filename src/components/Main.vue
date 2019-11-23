@@ -29,25 +29,22 @@
 
     <el-row :gutter="10">
       <el-col v-for="item in getItems" :key="item.thumbnailUrl">
-        <el-row
-          v-if="preview"
-          class="box"
-          style="cursor: pointer;"
-          @click.native="redirect(item.url)"
-        >
-          <el-col class="box-item" :lg="6" :md="6" :sm="6" :xs="6">
-            <img :src="item.thumbnailUrl" class="thumpnail" />
-          </el-col>
-          <el-col :lg="18" :md="18" :sm="18" :xs="18">
-            <div>{{ item.caption }}</div>
-          </el-col>
-        </el-row>
+        <a :href="item.url" style="text-decoration:none !important">
+          <el-row v-if="preview" class="box">
+            <el-col class="box-item" :lg="6" :md="6" :sm="6" :xs="6">
+              <img :src="item.thumbnailUrl" class="thumpnail" />
+            </el-col>
+            <el-col :lg="18" :md="18" :sm="18" :xs="18">
+              <div>{{ item.caption }}</div>
+            </el-col>
+          </el-row>
 
-        <el-row v-else class="box" style="cursor: pointer;" @click.native="redirect(item.url)">
-          <el-col :lg="24" :md="24" :sm="24" :xs="24">
-            <div>{{ item.caption }}</div>
-          </el-col>
-        </el-row>
+          <el-row v-else class="box">
+            <el-col :lg="24" :md="24" :sm="24" :xs="24">
+              <div>{{ item.caption }}</div>
+            </el-col>
+          </el-row>
+        </a>
       </el-col>
 
       <el-col v-if="getItems.length === 0" :xs="24" :sm="24" :md="24">
@@ -110,6 +107,9 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
+a {
+  text-decoration: none;
+  color: inherit;
+}
 </style>
