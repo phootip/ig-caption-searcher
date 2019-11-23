@@ -72,6 +72,7 @@ export default {
   props: {
     msg: String
   },
+  components: {},
   data: function() {
     return {
       filter: "",

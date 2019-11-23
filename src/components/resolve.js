@@ -12,6 +12,8 @@ const fetchInstagramPhotos = async accountUrl => {
   //   json.entry_data.ProfilePage[0].graphql.user.edge_owner_to_timeline_media
   //     .edges;
   const user_id = json.entry_data.ProfilePage[0].graphql.user.id
+  const is_private = json.entry_data.ProfilePage[0].graphql.user.is_private
+  console.log("is_private", is_private)
   const count = 50
   // const count = json.entry_data.ProfilePage[0].graphql.user.edge_owner_to_timeline_media.count
 
