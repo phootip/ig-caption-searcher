@@ -1,6 +1,4 @@
 import axios from "axios";
-// import scraper from './scraper';
-// const fetch = require('node-fetch')
 const instagramRegExp = new RegExp(
   /<script type="text\/javascript">window\._sharedData = (.*)<\/script>/
 );

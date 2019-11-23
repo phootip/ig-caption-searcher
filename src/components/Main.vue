@@ -3,24 +3,19 @@
     <el-row class="search-wrapper" :gutter="10">
       <el-row>
         <el-col :lg="12" :md="12" :sm="12" :xs="20">
-          <el-input
-            placeholder="Enter Your Instagram ID"
-            icon="search"
-            value="sunsetwithbubbles"
-            v-model="username"
-          />
+          <el-input placeholder="Enter Your Instagram ID" icon="search" v-model="username" />
         </el-col>
 
         <el-col class="col-space" :lg="6" :md="6" :sm="6" :xs="24">&nbsp;</el-col>
 
         <el-col :lg="6" :md="6" :sm="6" :xs="4">
-          <el-button @click="fetchData">Fetch Data</el-button>
+          <Loader :username="username" v-on:updateItems="updateItems" />
         </el-col>
       </el-row>
 
       <el-row>
         <el-col :lg="12" :md="12" :sm="12" :xs="24">
-          <el-input placeholder="Filter by Name" icon="search" v-model="filter" />
+          <el-input placeholder="Search Captions" icon="search" v-model="filter" />
         </el-col>
 
         <el-col class="col-space" :lg="6" :md="6" :sm="6" :xs="24">&nbsp;</el-col>
@@ -56,7 +51,8 @@
       </el-col>
 
       <el-col v-if="getItems.length === 0" :xs="24" :sm="24" :md="24">
-        <div class="box box__empty">No Match Found</div>
+        <div v-if="items.length === 0">Loading</div>
+        <div v-else class="box box__empty">No Match Found</div>
       </el-col>
     </el-row>
     <!-- results -->
@@ -65,14 +61,16 @@
 </template>
 
 <script>
-import { resolveItems } from "./resolve.js";
+import Loader from "./Loader";
 
 export default {
   name: "Main",
   props: {
     msg: String
   },
-  components: {},
+  components: {
+    Loader
+  },
   data: function() {
     return {
       filter: "",
@@ -83,7 +81,8 @@ export default {
         { label: "Most Viewed", value: "views" }
       ],
       items: [],
-      username: "sunsetwithbubbles"
+      username: "sunsetwithbubbles",
+      loaded: 10
     };
   },
   computed: {
@@ -96,18 +95,11 @@ export default {
     }
   },
   methods: {
-    async fetchData() {
-      console.info("start publicFetch...");
-      try {
-        this.items = await resolveItems(this.username, this.item);
-        console.info(this.items.length);
-      } catch (e) {
-        console.error("Fetching Instagram photos failed", e);
-      }
-      console.info("end publicFetch");
-    },
     redirect(url) {
       window.location.href = url;
+    },
+    updateItems(value) {
+      this.items = value;
     }
   },
   mounted() {
