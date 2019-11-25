@@ -3,5 +3,5 @@ module.exports = {
   devServer: {
     disableHostCheck: true
   },
-  // publicPath: 'ig-caption-searcher'
+  publicPath: 'ig-caption-searcher',
 }
