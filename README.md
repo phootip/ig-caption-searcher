@@ -18,4 +18,4 @@ Yes, we track page visits and number of fetch request send with [countapi](https
 * https://stackoverflow.com/questions/51529332/puppeteer-scroll-down-until-you-cant-anymore
 
 ## Why we can't scrape Private Account
-Instagram has been closing their application registration to access their API for quite a while and doesn't seem like they will open it for us, hence getting access to private posts will involve cookies sharing or other huge work around. If you still want it, you code it.
+Instagram has been closing their application registration to access their API for quite a while and doesn't seem like they will open it for us, hence getting access to private posts will involve cookies sharing or other huge work around. We can discuss together, if you want this feature.
