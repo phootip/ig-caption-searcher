@@ -2,12 +2,15 @@
   <div>
     <el-row class="container" style="margin-bottom:0px">
       <a href="https://github.com/phootip/ig-caption-searcher">
-        <img src="/GitHub-Mark-64px.png" style="height:30px;margin-left:auto;display:block" />
+        <img
+          :src="`${publicPath}GitHub-Mark-64px.png`"
+          style="height:30px;margin-left:auto;display:block"
+        />
       </a>
     </el-row>
     <el-row class="header">
       <a href="https://github.com/phootip/ig-caption-searcher">
-        <img class="middle" src="/logo.png" />
+        <img class="middle" :src="`${publicPath}Logo.png`" />
       </a>
     </el-row>
     <el-row class="container a">
@@ -24,6 +27,11 @@ import fetch from "node-fetch";
 
 export default {
   name: "Main",
+  data() {
+    return {
+      publicPath: process.env.BASE_URL
+    };
+  },
   components: {
     Table
   },
