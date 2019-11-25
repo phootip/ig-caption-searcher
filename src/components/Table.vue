@@ -2,13 +2,13 @@
   <div class="container">
     <el-row class="search-wrapper" :gutter="10">
       <el-row style="margin-bottom:10px">
-        <el-col :lg="12" :md="12" :sm="12" :xs="20">
+        <el-col :lg="12" :md="12" :sm="12" :xs="24" style="margin-bottom:10px">
           <el-input placeholder="Enter Instagram ID" icon="search" v-model="username" />
         </el-col>
 
-        <el-col class="col-space" :lg="6" :md="6" :sm="6" :xs="24">&nbsp;</el-col>
+        <el-col class="col-space" :lg="6" :md="6" :sm="6" :xs="0">&nbsp;</el-col>
 
-        <el-col :lg="6" :md="6" :sm="6" :xs="4">
+        <el-col :lg="6" :md="6" :sm="6" :xs="24">
           <Loader
             :username="username"
             v-on:updateItems="updateItems"
@@ -19,14 +19,18 @@
       </el-row>
 
       <el-row>
-        <el-col :lg="12" :md="12" :sm="12" :xs="24">
+        <el-col :lg="12" :md="12" :sm="12" :xs="24" style="margin-bottom:10px">
           <el-input placeholder="Search Captions" icon="search" v-model="filter" />
         </el-col>
 
         <el-col class="col-space" :lg="6" :md="6" :sm="6" :xs="24">&nbsp;</el-col>
 
         <el-col :lg="6" :md="6" :sm="6" :xs="24">
-          <el-checkbox v-model="preview" border>Show Image</el-checkbox>
+          <el-checkbox
+            style="display:table;margin:0px auto;float:none"
+            v-model="preview"
+            border
+          >Show Image</el-checkbox>
         </el-col>
       </el-row>
     </el-row>

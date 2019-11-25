@@ -1,12 +1,16 @@
 <template>
   <div>
-    <el-button
-      @click="fetchInstagramPhotos(username)"
-      :disabled="loaded!=total"
-      style="margin-right:10px"
-    >Fetch Captions</el-button>
-    <ICountUp :delay="delay" :endVal="loaded" :options="{}" ref="counter" />
-    / {{total}}
+    <el-col :lg="12" :md="12" :sm="12" :xs="12">
+      <el-button
+        @click="fetchInstagramPhotos(username)"
+        :disabled="loaded!=total"
+        style="margin:auto;display:block"
+      >Fetch Captions</el-button>
+    </el-col>
+    <el-col :lg="12" :md="12" :sm="12" :xs="12" style="text-align:center">
+      <ICountUp :delay="delay" :endVal="loaded" :options="{}" ref="counter" />
+      / {{total}}
+    </el-col>
   </div>
 </template>
 
