@@ -12,7 +12,8 @@ body {
   margin: 10px 0;
 }
 .col-space {
-  content: '&nbsp;';
+  content: '&nbsp';
+  height: 1px;
 }
 @media screen and (max-width: 767px) {
   .col-space {
@@ -51,4 +52,16 @@ body {
 }
 .box-item {
   padding-right: 10px;
+}
+.el-checkbox.is-bordered {
+	padding: 9px 20px 9px 10px;
+	border-radius: 4px;
+	border: 1px solid #dcdfe6;
+	box-sizing: border-box;
+	line-height: normal;
+  height: 40px;
+  background: white;
+}
+.el-checkbox.is-bordered.is-checked {
+	border-color: #409eff;
 }
