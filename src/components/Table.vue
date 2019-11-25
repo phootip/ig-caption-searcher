@@ -104,9 +104,14 @@ export default {
       this.empty = false;
     },
     updatePrivate() {
-      this.$message.error(
-        "The account is private, you have to public your account"
-      );
+      // this.$message.error(
+      //   "The account is private, you have to public your account. why? <a href='https://github.com/phootip/ig-caption-searcher/tree/master#why-we-cant-scrape-private-account'>Learn More</a>"
+      // );
+      this.$message.error({
+        dangerouslyUseHTMLString: true,
+        message:
+          "The account is private, you have to public your account. why? <a style='text-decoration:underline; color:blue' href='https://github.com/phootip/ig-caption-searcher/tree/master#why-we-cant-scrape-private-account'>Learn More</a>"
+      });
       this.empty = true;
     },
     notFound(status) {
