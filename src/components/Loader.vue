@@ -1,14 +1,19 @@
 <template>
   <div>
+    <el-button
+      @click="fetchInstagramPhotos(username)"
+      :disabled="loaded!=total"
+      style="margin-right:10px"
+    >Fetch Captions</el-button>
     <ICountUp :delay="delay" :endVal="loaded" :options="{}" ref="counter" />
     / {{total}}
-    <el-button @click="fetchInstagramPhotos(username)">Fetch Captions</el-button>
   </div>
 </template>
 
 <script>
 import axios from "axios";
 import ICountUp from "vue-countup-v2";
+// TODO: add countapi
 export default {
   name: "Loader",
   components: {
@@ -29,12 +34,24 @@ export default {
       this.loaded = 15;
     },
     async fetchInstagramPhotos(username) {
+      if (username === "") {
+        this.$message.error("Please enter your instagram username");
+        return;
+      }
       this.loaded = 0;
       this.total = 0;
       this.$refs.counter.reset();
       this.$emit("updateItems", []);
+      axios.get(process.env.VUE_APP_FETCH);
+
       const accountUrl = `https://www.instagram.com/${username}/`;
-      const response = await axios.get(accountUrl);
+      let response = "";
+      try {
+        response = await axios.get(accountUrl);
+      } catch (err) {
+        this.$emit("notFound", err.response.status);
+        return;
+      }
       const data = response.data.match(instagramRegExp)[1];
       const json = JSON.parse(data.slice(0, -1));
       // const edges =
@@ -42,7 +59,10 @@ export default {
       //     .edges;
       const user_id = json.entry_data.ProfilePage[0].graphql.user.id;
       const is_private = json.entry_data.ProfilePage[0].graphql.user.is_private;
-      console.log("is_private", is_private);
+      if (is_private) {
+        this.$emit("private_account");
+        return;
+      }
       this.total =
         json.entry_data.ProfilePage[0].graphql.user.edge_owner_to_timeline_media.count;
       const count = 50;
@@ -59,7 +79,7 @@ export default {
           response_graph.data.data.user.edge_owner_to_timeline_media.edges;
         page_info =
           response_graph.data.data.user.edge_owner_to_timeline_media.page_info;
-        console.log(page_info);
+
         photos = photos.concat(
           edges_graph.map(({ node }) => {
             if (node.edge_media_to_caption.edges[0] === undefined) {
