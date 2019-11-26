@@ -9,7 +9,7 @@ Have you ever wondered 'Have I used this caption before', well, at least I have.
 - Some code from [reference](#reference), and other sources that I for got
 
 ## Do we track anything?
-Yes, we track page visits and number of fetch request send with [countapi](https://countapi.xyz/). Because I want to make this app as server-less as possible
+Yes, we track page visits and number of fetch requests sent with [countapi](https://countapi.xyz/).
 
 ## Reference
 * https://dev.to/teroauralinna/how-to-fetch-your-public-photos-from-instagram-without-the-api-3m50
