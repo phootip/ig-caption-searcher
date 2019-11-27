@@ -19,3 +19,6 @@ Yes, we track page visits and number of fetch requests sent with [countapi](http
 
 ## Why we can't scrape Private Account
 Instagram has been closing their application registration to access their API for quite a while and doesn't seem like they will open it for us, hence getting access to private posts will involve cookies sharing or other huge work around. We can discuss together, if you want this feature.
+
+## Why is dist sitting on the repository? Don't you know how to .gitignore?
+It's my first time playing with github-pages and git subtree, so I'm kind of make a mistake. Whatever, this project isn't that big anyway
